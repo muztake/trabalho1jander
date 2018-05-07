@@ -65,7 +65,7 @@
 			imagem = imagem.map(linha => {
 				valores = linha.split(' ').filter(i => i != '')
 				let pixels = []
-				for(let i = 0; i < 10; i++){
+				for(let i = 0; i < valores.length/3; i++){
 					let pixelVal = valores.slice(i * 3, i * 3 + 3)
 					let pixel = { r: pixelVal[0], g: pixelVal[1], b: pixelVal[2]}
 					pixels.push( pixel )
