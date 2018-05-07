@@ -1,0 +1,72 @@
+<html>
+	<head>
+		<meta charset="utf8">
+		<style>
+		.grid{
+		  display: grid;
+		  grid-template-rows: 1fr;
+		  grid-template-columns: 1fr 1fr;
+		  grid-gap: 40px;
+		  height: 400px;
+		}
+
+		#input{
+		  height: 100%;
+		  background: #eee;
+		  border: 0;
+		  box-sizing: border-box;
+		  padding: 1em;
+		}
+
+		#canvas{
+		  height: 100%;
+		  background: #eee;
+		}
+		</style>
+	</head>
+<body>
+	<input style='display:block' id='size' placeholder="Tamanho dos pixels (4)" />
+	  <div class='grid'>
+	    <textarea onchange='change()' id='input' placeholder='insira os valores da imagem aqui'></textarea>
+	    <canvas id='canvas'/> 
+		</div>
+		@henrycunh
+	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+	<script>
+		const inputEl = $("#input")	
+		const canvas = document.getElementById('canvas').getContext("2d")
+		var imagem = []
+
+		
+		getData()
+
+		function getData(){
+			imagem = inputEl.val().split("\n")
+			imagem = imagem.map(linha => {
+				valores = linha.split(' ').filter(i => i != '')
+				let pixels = []
+				for(let i = 0; i < 10; i++){
+					let pixelVal = valores.slice(i * 3, i * 3 + 3)
+					let pixel = { r: pixelVal[0], g: pixelVal[1], b: pixelVal[2]}
+					pixels.push( pixel )
+				}
+				return pixels
+			})
+			drawImg(parseInt($("#size").val() || 4))
+		}
+
+		function drawImg( size ){
+			canvas.fillStyle = "#eee"
+			canvas.fillRect(0, 0, 10000, 10000)
+			imagem.forEach( ( linhaPixels, linha ) => {
+				linhaPixels.forEach( ( pixel, coluna ) => {
+					canvas.fillStyle = `rgb(${pixel.r}, ${pixel.g}, ${pixel.b})`
+					canvas.fillRect(coluna * size, linha * size, size, size)
+				})
+			})
+		}
+		$("#size").on("change keyup paste", getData)
+		inputEl.on("change keyup paste", getData)
+	</script>
+</body>
+</html>
