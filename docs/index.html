@@ -2,6 +2,16 @@
 	<head>
 		<meta charset="utf8">
 		<style>
+		.cred{
+			display: block;
+			margin: .5em auto;
+			width: 300px;
+			font-family: 'Courier New', Courier, monospace;
+			text-align: center;
+			font-weight: bold;
+			color: cadetblue;
+		}
+
 		.grid{
 		  display: grid;
 		  grid-template-rows: 1fr;
@@ -10,9 +20,19 @@
 		  height: 400px;
 		}
 
+		#size{
+			border: 2px solid #ccc;
+			font-family: 'Courier New', Courier, monospace;
+			margin: .5em auto;
+			padding: .4em 1em;
+			width: 210px;
+			border-radius: 4px;
+		}
+
 		#input{
 		  height: 100%;
 		  background: #eee;
+			font-family: 'Courier New', Courier, monospace;
 		  border: 0;
 		  box-sizing: border-box;
 		  padding: 1em;
@@ -30,7 +50,7 @@
 	    <textarea onchange='change()' id='input' placeholder='insira os valores da imagem aqui'></textarea>
 	    <canvas id='canvas'/> 
 		</div>
-		@henrycunh
+		<span class='cred'>@henrycunh</span>
 	<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 	<script>
 		const inputEl = $("#input")	
